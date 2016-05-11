@@ -1,0 +1,21 @@
+@(msg: String, inputData: Form[Application.InputData])
+
+@main("Welcome to Play") {
+
+  <h1>Hello, Forms!</h1>
+  <p>@msg</p>
+  @helper.form(action = routes.Application.send()) {
+    @(helper.inputText(inputData("input"),'_label->"あなたの名前",'_help->"必須",'_error->"This field is required")(mytextinput, implicitly[Lang]))
+    @(helper.inputPassword(inputData("pass"),'_label->"パスワード"))
+    @(helper.checkbox(inputData("check"),args='checked->"checked",'_text->""))
+    @(helper.inputRadioGroup(inputData("radio"),options = helper.options(("windows","MS-Windows"),("mac","Mac OS X"),("linux","Linux"))))
+    @(helper.select(inputData("select"),args='size->"3",
+            options = helper.options(("jp","日本"),("us","アメリカ"),("uk","イギリス"))))
+    @(helper.textarea(inputData("area")))
+    @(helper.inputDate(inputData("date")))
+    @(helper.inputText(inputData("inputNum"),args='type->"number",'max->"100",'min->"10",'value->"50"))
+    <input type = "submit">
+  }
+
+
+}
